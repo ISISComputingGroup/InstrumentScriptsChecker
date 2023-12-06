@@ -35,9 +35,9 @@ def check_instrument(hostname, remote_repo):
 
     # Your last commit of the dev branch
     commit_origin_dev = repo.commit("origin/" + REMOTE_BRANCH)
-    new_files = [[]]
-    deleted_files = [[]]
-    modified_files = [[]]
+    new_files = []
+    deleted_files = []
+    modified_files = []
 
     # Comparing 
     diff_index = commit_origin_dev.diff(commit_feature)
