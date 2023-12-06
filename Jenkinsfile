@@ -16,25 +16,31 @@ pipeline {
     }
   
     stages {  
-        
+
         stage("Checkout") {
             steps {
-                checkout scm
+                timeout(time: 2, unit: 'HOURS') {
+                    retry(5) {
+                        checkout scm
+                    }
+                }
             }
-        }
+        }   
 
         stage("Dependencies") {
-        steps {
-          echo "Installing local genie python"
-          bat """
-                setlocal
-                set WORKWIN=%WORKSPACE:/=\\%
-                rd /s /q %WORKWIN%\\Python3
-                call build\\update_genie_python.bat ${env.WORKSPACE}\\Python3
-                if %errorlevel% neq 0 exit /b %errorlevel%
-          """
-        }
-    }    
+            steps {
+                echo "Installing local genie python"
+                timeout(time: 1, unit: 'HOURS') {
+                    bat """
+                    setlocal
+                    set WORKWIN=%WORKSPACE:/=\\%
+                    rd /s /q %WORKWIN%\\Python3
+                    call build\\update_genie_python.bat ${env.WORKSPACE}\\Python3
+                    if %errorlevel% neq 0 exit /b %errorlevel%
+                 """
+                }
+            }
+        }    
 
         stage("Check Instrument Scripts Repo Branches up-to-date") {
             steps {
