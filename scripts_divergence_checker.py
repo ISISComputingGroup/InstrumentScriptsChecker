@@ -71,8 +71,8 @@ def check_instrument(hostname, remote_repo):
     #     print("Modified files:")
     #     for file in modified_files:
     #         print(file.a_path)
-
-    diverged[hostname] = {'new': new_files, 'deleted': deleted_files, 'modified': modified_files}
+    if len(new_files) > 0 or len(deleted_files) > 0 or len(modified_files) > 0:
+        diverged[hostname] = {'new': new_files, 'deleted': deleted_files, 'modified': modified_files}
 
 def check_all_scripts(hostnames):
     print('Starting instrument script divergence checker')
@@ -92,7 +92,6 @@ def check_all_scripts(hostnames):
 
 # Manual running (for the time being)
 print(check_all_scripts(inst_hostnames))
-print
 
 if len(diverged) > 0:
     sys.exit(1)
