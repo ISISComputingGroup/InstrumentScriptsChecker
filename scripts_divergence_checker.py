@@ -78,10 +78,10 @@ def check_all_scripts(hostnames):
     print('Starting instrument script divergence checker')
 
     # clone repo
-    Git.Repo.clone_from(REMOTE_URL, REMOTE_DIR_PATH)
+    git.Repo.clone_from(REMOTE_URL, REMOTE_DIR_PATH)
 
     # checkout to the remote branch
-    repo = Git.Repo(REMOTE_DIR_PATH)
+    repo = git.Repo(REMOTE_DIR_PATH)
     repo.git.checkout(REMOTE_BRANCH)
 
     for hostname in hostnames:
