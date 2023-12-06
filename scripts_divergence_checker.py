@@ -10,7 +10,7 @@ from concurrent.futures import thread
 
 REMOTE_URL = 'https://github.com/ISISNeutronMuon/InstrumentScripts'
 REMOTE_BRANCH = 'master'
-REMOTE_DIR_PATH = './'
+REMOTE_DIR_PATH = './InstrumentScripts'
 
 # inst_hostnames = ["NDXARGUS", "NDXCHRONUS", "NDXHIFI", "NDXCHIPIR", "NDXCRYOLAB_R80", "NDXLARMOR", "NDXALF", "NDXDEMO",
 #                    "NDXIMAT", "NDXMUONFE", "NDXZOOM", "NDXIRIS", "NDXIRIS_SETUP", "NDXENGINX_SETUP", "NDXHRPD_SETUP", 
