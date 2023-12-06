@@ -55,7 +55,10 @@ def check_instrument(hostname, remote_repo):
         modified_files.append(file)
 
     if len(new_files) > 0 or len(deleted_files) > 0 or len(modified_files) > 0:
+        print(f'{hostname} has diverged')
         diverged[hostname] = {'new': new_files, 'deleted': deleted_files, 'modified': modified_files}
+    else:
+        print(f'{hostname} is up to date')
 
 def check_all_scripts(hostnames):
     print('Starting instrument script divergence checker')
