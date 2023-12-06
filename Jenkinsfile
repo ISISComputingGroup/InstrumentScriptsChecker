@@ -7,9 +7,6 @@ pipeline {
             label "scriptdivergencechecker"
         }
     }
-
-    environment {
-    }
   
     triggers {
         cron('H 1 * * *')
