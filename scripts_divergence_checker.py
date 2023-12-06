@@ -70,13 +70,12 @@ def check_all_scripts(hostnames):
     for hostname in hostnames:
         check_instrument(hostname, repo)
 
-    return diverged
-
 
 # Manual running (for the time being)
-print(check_all_scripts(inst_hostnames))
+check_all_scripts(inst_hostnames)
 
 if len(diverged) > 0:
+    print(diverged)
     sys.exit(1)
 else:
     sys.exit(0)
