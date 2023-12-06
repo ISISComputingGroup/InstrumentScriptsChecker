@@ -54,23 +54,6 @@ def check_instrument(hostname, remote_repo):
     for file in diff_index.iter_change_type('M'):
         modified_files.append(file)
 
-    # # Print all new files
-    # if len(new_files) > 0:
-    #     print("New files:")
-    #     for file in new_files:
-    #         print(file.a_path)
-
-    # # Print all deleted files
-    # if len(deleted_files) > 0:
-    #     print("Deleted files:")
-    #     for file in deleted_files:
-    #         print(file.a_path)
-    
-    # # Print all modified files
-    # if len(modified_files) > 0:
-    #     print("Modified files:")
-    #     for file in modified_files:
-    #         print(file.a_path)
     if len(new_files) > 0 or len(deleted_files) > 0 or len(modified_files) > 0:
         diverged[hostname] = {'new': new_files, 'deleted': deleted_files, 'modified': modified_files}
 
