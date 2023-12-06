@@ -8,7 +8,7 @@ from pathlib import Path
 from concurrent.futures import thread
 # noinspection PyUnresolvedReferences
 
-REMOTE_URL = 'https://github.com/ISISNeutronMuon/InstrumentScripts'
+REMOTE_URL = 'https://github.com/ISISNeutronMuon/InstrumentScripts.git'
 REMOTE_BRANCH = 'master'
 REMOTE_DIR_PATH = ''
 
