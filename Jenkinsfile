@@ -4,7 +4,7 @@ pipeline {
 
     agent {  
         label {
-            label "scriptdivergencechecker"
+            label "ConfigCheck"
         }
     }
   
