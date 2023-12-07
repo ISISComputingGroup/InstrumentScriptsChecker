@@ -33,7 +33,7 @@ def check_instrument(branch_to_check_name, master_repo):
     # Your last commit of the dev branch
     try:
         branch_last_commit = master_repo.commit("origin/" + branch_to_check_name)
-    except git.exc.GitCommandError:
+    except git.exc.BadName:
         print(f'Branch {branch_to_check_name} does not exist on origin')
         return
     
