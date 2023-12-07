@@ -22,6 +22,7 @@ REPO_DIR_PATH = './InstrumentScripts'
 
 instruments = ChannelAccessUtils().get_inst_list()
 diverged_instruments = {}
+branch_not_existing = []
 
 
 def check_instrument(branch_to_check_name, master_repo):
@@ -29,14 +30,13 @@ def check_instrument(branch_to_check_name, master_repo):
 
     # Your last commit of the current branch
     master_last_commit = master_repo.head.commit.tree
-
-    # Your last commit of the dev branch
     try:
         branch_last_commit = master_repo.commit("origin/" + branch_to_check_name)
     except git.exc.BadName:
-        print(f'Branch {branch_to_check_name} does not exist on origin')
+        print(f'{branch_to_check_name} does not exist on remote')
+        branch_not_existing.append(branch_to_check_name)
         return
-    
+
     new_files = []
     deleted_files = []
     modified_files = []
@@ -80,8 +80,9 @@ def check_all_scripts(instruments):
 # Manual running (for the time being)
 check_all_scripts(instruments)
 
-if len(diverged_instruments) > 0:
-    print(diverged_instruments)
+if len(diverged_instruments) > 0 or len(branch_not_existing) > 0:
+    print("Diverged: " + diverged_instruments)
+    print("Branch not existing: " + branch_not_existing)
     sys.exit(1)
 else:
     sys.exit(0)
