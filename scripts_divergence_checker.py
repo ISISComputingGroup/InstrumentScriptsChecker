@@ -74,7 +74,7 @@ def check_all_scripts(instruments):
     masterRepo.git.checkout(REMOTE_BRANCH)
 
     for instrument in instruments:
-        check_instrument(instrument['name'], masterRepo)
+        check_instrument("NDX" + instrument['name'], masterRepo)
 
 # Manual running (for the time being)
 check_all_scripts(instruments)
