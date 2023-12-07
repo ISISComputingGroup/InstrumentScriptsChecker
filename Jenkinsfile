@@ -2,6 +2,7 @@
 
 pipeline {
 
+    // using same agnert as ConfigCheck job
     agent {  
         label {
             label "ConfigCheck"
@@ -24,27 +25,10 @@ pipeline {
             }
         }   
 
-        // only need to install genie/python locally if it's quicker to install than it is to restart the test when network fails
-        
-        // stage("Dependencies") {
-        //     steps {
-        //         echo "Installing local genie python"
-        //         timeout(time: 1, unit: 'HOURS') {
-        //             bat """
-        //             setlocal
-        //             set WORKWIN=%WORKSPACE:/=\\%
-        //             rd /s /q %WORKWIN%\\Python3
-        //             call build\\update_genie_python.bat ${env.WORKSPACE}\\Python3
-        //             if %errorlevel% neq 0 exit /b %errorlevel%
-        //          """
-        //         }
-        //     }
-        // }    
-
         stage("Check Instrument Scripts Repo Branches up-to-date") {
             steps {
                 echo "Checking Instrument Scripts Repo Branches up-to-date"
-                timeout(time: 5, unit: 'HOURS') {
+                timeout(time: 1, unit: 'HOURS') {
                     bat """
                         call scripts_divergence_checker.bat
                     """

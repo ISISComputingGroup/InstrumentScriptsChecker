@@ -1,26 +1,17 @@
-import os
 import sys
 import git
-import os
-from pathlib import Path 
-# noinspection PyUnresolvedReferences
-# Workaround for AttributeError when concurrent.futures.thread._threads_queues.clear()
-from concurrent.futures import thread
-# noinspection PyUnresolvedReferences
-from util.channel_access import ChannelAccessUtils
 
 REMOTE_URL = 'https://github.com/ISISNeutronMuon/InstrumentScripts'
 REMOTE_BRANCH = 'master'
 REPO_DIR_PATH = './InstrumentScripts'
 
-# inst_hostnames = ["NDXARGUS", "NDXCHRONUS", "NDXHIFI", "NDXCHIPIR", "NDXCRYOLAB_R80", "NDXLARMOR", "NDXALF", "NDXDEMO",
-#                    "NDXIMAT", "NDXMUONFE", "NDXZOOM", "NDXIRIS", "NDXIRIS_SETUP", "NDXENGINX_SETUP", "NDXHRPD_SETUP", 
-#                    "NDXHRPD", "NDXPOLARIS", "NDXVESUVIO", "NDXENGINX", "NDXMERLIN", "NDXRIKENFE", "NDXSELAB", "NDXEMMA-A", 
-#                    "NDXSANDALS", "NDXGEM", "NDXMAPS", "NDXOSIRIS", "NDXINES", "NDXTOSCA", "NDXLOQ", "NDXLET", "NDXMARI", 
-#                    "NDXCRISP", "NDXSOFTMAT", "NDXSURF", "NDXNIMROD", "NDXDETMON", "NDXEMU", "NDXINTER", "NDXPOLREF", "NDXSANS2D", 
-#                    "NDXMUSR", "NDXWISH", "NDXWISH_SETUP", "NDXPEARL", "NDXPEARL_SETUP", "NDXHIFI-CRYOMAG", "NDXOFFSPEC"]
+instruments = ["NDXARGUS", "NDXCHRONUS", "NDXHIFI", "NDXCHIPIR", "NDXCRYOLAB_R80", "NDXLARMOR", "NDXALF", "NDXDEMO",
+                   "NDXIMAT", "NDXMUONFE", "NDXZOOM", "NDXIRIS", "NDXIRIS_SETUP", "NDXENGINX_SETUP", "NDXHRPD_SETUP", 
+                   "NDXHRPD", "NDXPOLARIS", "NDXVESUVIO", "NDXENGINX", "NDXMERLIN", "NDXRIKENFE", "NDXSELAB", "NDXEMMA-A", 
+                   "NDXSANDALS", "NDXGEM", "NDXMAPS", "NDXOSIRIS", "NDXINES", "NDXTOSCA", "NDXLOQ", "NDXLET", "NDXMARI", 
+                   "NDXCRISP", "NDXSOFTMAT", "NDXSURF", "NDXNIMROD", "NDXDETMON", "NDXEMU", "NDXINTER", "NDXPOLREF", "NDXSANS2D", 
+                   "NDXMUSR", "NDXWISH", "NDXWISH_SETUP", "NDXPEARL", "NDXPEARL_SETUP", "NDXHIFI-CRYOMAG", "NDXOFFSPEC"]
 
-instruments = ChannelAccessUtils().get_inst_list()
 diverged_instruments = {}
 branch_not_existing = []
 
@@ -45,15 +36,15 @@ def check_instrument(branch_to_check_name, master_repo):
     # do not change order of comparison as this will reverse the diff
     difference_between_branch_to_master = branch_last_commit.diff(master_last_commit)
 
-    # Collection all new files
+    # Collection of all new files
     for file in difference_between_branch_to_master.iter_change_type('A'):
         new_files.append(file)
 
-    # Collection all deleted files
+    # Collection of all deleted files
     for file in difference_between_branch_to_master.iter_change_type('D'):
         deleted_files.append(file)
 
-    # Collection all modified files
+    # Collection of all modified files
     for file in difference_between_branch_to_master.iter_change_type('M'):
         modified_files.append(file)
 
@@ -74,7 +65,7 @@ def check_all_scripts(instruments):
     masterRepo.git.checkout(REMOTE_BRANCH)
 
     for instrument in instruments:
-        check_instrument("NDX" + instrument['name'], masterRepo)
+        check_instrument(instrument, masterRepo)
 
 # Manual running (for the time being)
 check_all_scripts(instruments)
