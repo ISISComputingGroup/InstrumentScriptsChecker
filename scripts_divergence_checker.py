@@ -76,16 +76,12 @@ def check_all_scripts(instruments):
     for instrument in instruments:
         check_instrument(instrument['name'], masterRepo)
 
-
-red_color_code = "\033[91m"
-reset_color_code = "\033[0m"
-
 # Manual running (for the time being)
 check_all_scripts(instruments)
 
 if len(diverged_instruments) > 0 or len(branch_not_existing) > 0:
-    print(red_color_code + "Diverged: " + str(diverged_instruments))
-    print(red_color_code + "Branch not existing: " + str(branch_not_existing))
+    print("Diverged: " + str(diverged_instruments))
+    print("Branch not existing: " + str(branch_not_existing))
     sys.exit(1)
 else:
     sys.exit(0)
