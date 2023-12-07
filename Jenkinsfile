@@ -24,6 +24,8 @@ pipeline {
             }
         }   
 
+        // only need to install genie/python locally if it's quicker to install than it is to restart the test when network fails
+        
         // stage("Dependencies") {
         //     steps {
         //         echo "Installing local genie python"
