@@ -81,8 +81,8 @@ def check_all_scripts(instruments):
 check_all_scripts(instruments)
 
 if len(diverged_instruments) > 0 or len(branch_not_existing) > 0:
-    print("Diverged: " + diverged_instruments)
-    print("Branch not existing: " + branch_not_existing)
+    print("Diverged: " + str(diverged_instruments))
+    print("Branch not existing: " + str(branch_not_existing))
     sys.exit(1)
 else:
     sys.exit(0)
