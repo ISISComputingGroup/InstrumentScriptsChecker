@@ -36,4 +36,16 @@ pipeline {
             }
         }
     }
+
+    post {
+        always { 
+        logParser ([
+            // projectRulePath: 'path/to/rules/file/on/the/node',
+            parsingRulesPath: '/parse_rules',
+            showGraphs: true, 
+            unstableOnWarning: true, 
+            useProjectRule: false,
+        ])
+        }
+    }
 }
