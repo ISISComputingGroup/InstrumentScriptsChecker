@@ -19,7 +19,7 @@ def check_instrument(branch_to_check_name, master_repo):
     try:
         branch_last_commit = master_repo.commit("origin/" + branch_to_check_name)
     except git.exc.BadName:
-        print(f'{branch_to_check_name} does not exist on remote')
+        print(f'ERROR: {branch_to_check_name} does not exist on remote')
         branch_not_existing.append(branch_to_check_name)
         return
 
