@@ -19,7 +19,7 @@ def check_instrument(branch_to_check_name, master_repo):
     try:
         branch_last_commit = master_repo.commit("origin/" + branch_to_check_name)
     except git.exc.BadName:
-        print(f'{branch_to_check_name} does not exist on remote')
+        print(f'ERROR: {branch_to_check_name} does not exist on remote')
         branch_not_existing.append(branch_to_check_name)
         return
 
@@ -44,7 +44,7 @@ def check_instrument(branch_to_check_name, master_repo):
         modified_files.append(file)
 
     if len(new_files) > 0 or len(deleted_files) > 0 or len(modified_files) > 0:
-        print(f'{branch_to_check_name} has diverged')
+        print(f'ERROR: {branch_to_check_name} has diverged')
         diverged_instruments[branch_to_check_name] = {'new': new_files, 'deleted': deleted_files, 'modified': modified_files}
     else:
         print(f'{branch_to_check_name} is up to date')
@@ -66,8 +66,6 @@ def check_all_scripts(instruments):
 check_all_scripts(instruments)
 
 if len(diverged_instruments) > 0 or len(branch_not_existing) > 0:
-    print("ERROR: Diverged: " + str(diverged_instruments))
-    print("ERROR: Branch not existing: " + str(branch_not_existing))
     sys.exit(1)
 else:
     sys.exit(0)
