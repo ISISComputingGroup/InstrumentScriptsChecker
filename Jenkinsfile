@@ -40,11 +40,11 @@ pipeline {
     post {
         always { 
         logParser ([
-            projectRulePath: '',
-            parsingRulesPath: '/home/faa59/card/parse_rules',
+            projectRulePath: 'parse_rules',
+            parsingRulesPath: '',
             showGraphs: true, 
             unstableOnWarning: true, 
-            useProjectRule: false,
+            useProjectRule: true,
         ])
         }
     }
