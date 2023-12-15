@@ -29,7 +29,7 @@ def check_instrument(branch_to_check_name, master_repo):
 
     # Comparing branch to master so what changes are there on the branch not present on master
     # do not change order of comparison as this will reverse the diff
-    difference_between_branch_to_master = branch_last_commit.diff(master_last_commit)
+    difference_between_branch_to_master = master_last_commit.diff(branch_last_commit)
 
     # Collection of all new files
     for change in difference_between_branch_to_master.iter_change_type('A'):
