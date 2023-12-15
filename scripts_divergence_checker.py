@@ -5,7 +5,7 @@ REMOTE_URL = 'https://github.com/ISISNeutronMuon/InstrumentScripts'
 REMOTE_BRANCH = 'master'
 REPO_DIR_PATH = './InstrumentScripts'
 
-instruments = ['NDXCRISP', 'NDXINTER', 'NDXOFFSPEC', 'NDXPOLREF', 'NDXSURF', 'NDXARGUS', 'NDXCHRONUS', 'NDXEMU', 'NDXHIFI', 'NDXMUSR', 'NDXLARMOR', 'NDXLOQ', 'NDXSANS2D', 'NDXZOOM']
+instruments = ['NDXCRISP', 'NDXINTER', 'NDXOFFSPEC', 'NDXPOLREF', 'NDXSURF', 'NDXARGUS', 'NDXCHRONUS', 'NDXEMU', 'NDXHIFI', 'NDXMUSR', 'NDXLARMOR', 'NDXLOQ', 'NDXSANS2D', 'NDXZOOM', '7911-test']
 
 diverged_instruments = {}
 branch_not_existing = []
