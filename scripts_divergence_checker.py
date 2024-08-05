@@ -1,4 +1,5 @@
 import sys
+
 import git
 
 REMOTE_URL = 'https://github.com/ISISNeutronMuon/InstrumentScripts'
